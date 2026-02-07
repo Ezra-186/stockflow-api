@@ -1,9 +1,11 @@
 const swaggerAutogen = require('swagger-autogen')();
 
-const host = process.env.SWAGGER_HOST || `localhost:${process.env.PORT || 3000}`;
-const schemes = process.env.SWAGGER_SCHEMES
-  ? process.env.SWAGGER_SCHEMES.split(',')
-  : [process.env.NODE_ENV === 'production' ? 'https' : 'http'];
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const host = externalUrl
+  ? externalUrl.replace('https://', '').replace('http://', '')
+  : 'localhost:3000';
+
+const schemes = externalUrl ? ['https'] : ['http'];
 
 const doc = {
   info: {
