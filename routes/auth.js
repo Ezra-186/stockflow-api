@@ -85,7 +85,6 @@ router.get('/login', (req, res) => {
           <h1>StockFlow API</h1>
           <p class="desc">Sign in to access protected routes.</p>
           <a class="btn" href="/auth/github">Sign in with GitHub</a>
-          <p class="note">Swagger write routes (POST, PUT, DELETE) require login.</p>
           <a class="docs" href="/api-docs">Open Swagger Docs</a>
         </main>
       </body>
