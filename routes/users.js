@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../controllers/customers');
+const controller = require('../controllers/users');
 const requireAuth = require('../middleware/requireAuth');
 
 router.get('/', controller.getAll);
@@ -9,12 +9,13 @@ router.post(
   '/',
   /*  #swagger.parameters['obj'] = {
         in: 'body',
-        description: 'Create a customer',
+        description: 'Create a user',
         required: true,
         schema: {
-          "firstName": "Ezra",
-          "lastName": "Test",
-          "email": "Ezra@example.com"
+          "githubId": "12345678",
+          "username": "ezra-dev",
+          "displayName": "Ezra Dev",
+          "email": "ezra@example.com"
         }
   } */
   requireAuth,
@@ -25,19 +26,19 @@ router.put(
   '/:id',
   /*  #swagger.parameters['obj'] = {
         in: 'body',
-        description: 'Update a customer',
+        description: 'Update a user',
         required: true,
         schema: {
-          "firstName": "Ezra",
-          "lastName": "Update",
-          "email": "Ezra.Update@example.com",
-          "phone": "555-999-0000",
-          "address": "456 New Address Ave"
+          "githubId": "12345678",
+          "username": "ezra-updated",
+          "displayName": "Ezra Updated",
+          "email": "ezra.updated@example.com"
         }
   } */
   requireAuth,
   controller.update
 );
+
 router.delete('/:id', requireAuth, controller.remove);
 
 module.exports = router;

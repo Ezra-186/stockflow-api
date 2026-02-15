@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const controller = require('../controllers/products');
+const requireAuth = require('../middleware/requireAuth');
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getSingle);
@@ -17,6 +18,7 @@ router.post(
           "quantity": 25
         }
   } */
+  requireAuth,
   controller.create
 );
 
@@ -33,9 +35,10 @@ router.put(
           "quantity": 30
         }
   } */
+  requireAuth,
   controller.update
 );
 
-router.delete('/:id', controller.remove);
+router.delete('/:id', requireAuth, controller.remove);
 
 module.exports = router;

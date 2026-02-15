@@ -1,11 +1,7 @@
 const swaggerAutogen = require('swagger-autogen')();
 
-const externalUrl = process.env.RENDER_EXTERNAL_URL;
-const host = externalUrl
-  ? externalUrl.replace('https://', '').replace('http://', '')
-  : 'localhost:3000';
-
-const schemes = externalUrl ? ['https'] : ['http'];
+const host = process.env.RENDER_EXTERNAL_HOSTNAME || 'localhost:3000';
+const schemes = process.env.RENDER ? ['https'] : ['http'];
 
 const doc = {
   info: {
@@ -17,6 +13,12 @@ const doc = {
 };
 
 const outputFile = './swagger-output.json';
-const endpointsFiles = ['./routes/index.js'];
+const endpointsFiles = [
+  './routes/index.js',
+  './routes/products.js',
+  './routes/customers.js',
+  './routes/users.js',
+  './routes/orders.js'
+];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
